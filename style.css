@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.group {
+    margin-bottom: 20px;
+}
+
+.group h3 {
+    margin: 0 0 10px 0;
+}
+
+.course {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.course label {
+    margin-left: 10px;
+}
