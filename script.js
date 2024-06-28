@@ -1,5 +1,5 @@
 const groups = [
-    { name: '民事法選修學群', courses: [{ name: '民法概論', credits: 3 }, { name: '契約法', credits: 2 }] },
+    { name: '民事法選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '民法實例演習', credits: 2 }, { name: '土地法', credits: 4 }] },
     { name: '刑事法選修學群', courses: [{ name: '刑法概論', credits: 4 }, { name: '刑事訴訟法', credits: 1 }] },
     { name: '商事法選修學群', courses: [{ name: '公司法', credits: 3 }, { name: '商法', credits: 2 }] },
     { name: '國際法選修學群', courses: [{ name: '國際法', credits: 3 }, { name: '國際貿易法', credits: 1 }] },
