@@ -1,9 +1,9 @@
 const groups = [
     { name: '民事法選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '民法實例演習', credits: 2 }, { name: '土地法', credits: 4 }] },
-    { name: '刑事法選修學群', courses: [{ name: '刑法概論', credits: 4 }, { name: '刑事訴訟法', credits: 1 }] },
-    { name: '商事法選修學群', courses: [{ name: '公司法', credits: 3 }, { name: '商法', credits: 2 }] },
-    { name: '國際法選修學群', courses: [{ name: '國際法', credits: 3 }, { name: '國際貿易法', credits: 1 }] },
-    { name: '勞動法選修學群', courses: [{ name: '勞動法', credits: 2 }, { name: '勞動訴訟法', credits: 3 }] }
+    { name: '公法學選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '政治學', credits: 2 }, { name: '行政法案例研習', credits: 2 }] },
+    { name: '刑事法選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '刑事訴訟法案例研究', credits: 2 }, { name: '犯罪學', credits: 2 }] },
+    { name: '國際經貿法制選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '經濟學', credits: 1 }, { name: '會計學', credits: 2 }] },
+    { name: '科技法律選修學群', courses: [{ name: '法學緒論', credits: 2 }, { name: '醫學倫理與法律', credits: 2 }, { name: '資訊法律', credits: 2 }] }
 ];
 
 const minimumCredits = 5;
