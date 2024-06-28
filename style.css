@@ -18,6 +18,9 @@ h1, h2 {
 
 .group h3 {
     margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .course {
@@ -45,4 +48,16 @@ h1, h2 {
 
 button {
     padding: 5px 10px;
+}
+
+.courses {
+    display: none;
+}
+
+.toggle-button {
+    cursor: pointer;
+    padding: 2px 5px;
+    border: none;
+    background: none;
+    font-size: 16px;
 }
