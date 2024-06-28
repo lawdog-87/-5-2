@@ -10,13 +10,4 @@ h1, h2 {
 
 .group {
     margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.group h3 {
-    margin: 0 0 10px 0;
-    display: flex;
-    align-items
+    padding
