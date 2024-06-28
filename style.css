@@ -27,11 +27,27 @@ h1, h2 {
 }
 
 .course label {
-    margin-left: 10px;
-    flex-grow: 1;
+    flex: 1;
 }
 
 .course input[type="checkbox"] {
     width: 20px;
     height: 20px;
+}
+
+#summary {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#newGroupName {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 5px 10px;
 }
