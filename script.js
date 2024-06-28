@@ -25,17 +25,17 @@ function displayGroups() {
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
+            const label = document.createElement('label');
+            label.htmlFor = `group${groupIndex}course${courseIndex}`;
+            label.textContent = `${course.name} (${course.credits} 學分)`;
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.id = `group${groupIndex}course${courseIndex}`;
             checkbox.dataset.groupIndex = groupIndex;
             checkbox.dataset.courseIndex = courseIndex;
             checkbox.addEventListener('change', updateSummary);
-            const label = document.createElement('label');
-            label.htmlFor = checkbox.id;
-            label.textContent = `${course.name} (${course.credits} 學分)`;
-            courseDiv.appendChild(checkbox);
             courseDiv.appendChild(label);
+            courseDiv.appendChild(checkbox);
             groupDiv.appendChild(courseDiv);
         });
         groupsContainer.appendChild(groupDiv);
