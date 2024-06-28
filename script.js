@@ -1,6 +1,6 @@
 const groups = [
     {
-        name: '民事法選修學群', credits: 0, courses: [
+        name: '民事法選修學群', credits: 8, courses: [
             { name: '法學緒論', credits: 2 },
             { name: '民法實例演習', credits: 2 },
             { name: '土地法', credits: 4 },
@@ -41,13 +41,13 @@ const groups = [
             { name: '法聯想式案例解析方法與實踐-刑法與民法的對話', credits: 2 }
         ]
     },
-    { name: '公法學選修學群', credits: 0, courses: [{ name: '法學緒論', credits: 2 }, { name: '政治學', credits: 2 }, { name: '行政法案例研習', credits: 2 }] },
-    { name: '刑事法選修學群', credits: 0, courses: [{ name: '法學緒論', credits: 2 }, { name: '刑事訴訟法案例研究', credits: 2 }, { name: '犯罪學', credits: 2 }] },
-    { name: '國際經貿法制選修學群', credits: 0, courses: [{ name: '法學緒論', credits: 2 }, { name: '經濟學', credits: 1 }, { name: '會計學', credits: 2 }] },
-    { name: '科技法律選修學群', credits: 0, courses: [{ name: '法學緒論', credits: 2 }, { name: '醫學倫理與法律', credits: 2 }, { name: '資訊法律', credits: 2 }] }
+    { name: '公法學選修學群', credits: 8, courses: [{ name: '法學緒論', credits: 2 }, { name: '政治學', credits: 2 }, { name: '行政法案例研習', credits: 2 }] },
+    { name: '刑事法選修學群', credits: 8, courses: [{ name: '法學緒論', credits: 2 }, { name: '刑事訴訟法案例研究', credits: 2 }, { name: '犯罪學', credits: 2 }] },
+    { name: '國際經貿法制選修學群', credits: 8, courses: [{ name: '法學緒論', credits: 2 }, { name: '經濟學', credits: 1 }, { name: '會計學', credits: 2 }] },
+    { name: '科技法律選修學群', credits: 8, courses: [{ name: '法學緒論', credits: 2 }, { name: '醫學倫理與法律', credits: 2 }, { name: '資訊法律', credits: 2 }] }
 ];
 
-const minimumCredits = 8;
+const minimumCredits = 5;
 
 document.addEventListener('DOMContentLoaded', () => {
     displayGroups();
@@ -61,7 +61,7 @@ function displayGroups() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group';
         const groupTitle = document.createElement('h3');
-        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(0/${minimumCredits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
+        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(0/${group.credits} 學分)<button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button><button class="clear-button" onclick="clearGroup(${groupIndex})">清除</button></span></div>`;
         groupDiv.appendChild(groupTitle);
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
@@ -77,11 +77,10 @@ function displayGroups() {
             checkbox.dataset.groupIndex = groupIndex;
             checkbox.dataset.courseIndex = courseIndex;
             checkbox.addEventListener('change', updateSummary);
-            label.appendChild(checkbox);
             courseDiv.appendChild(label);
+            courseDiv.appendChild(checkbox);
             coursesDiv.appendChild(courseDiv);
         });
-        coursesDiv.style.display = 'none';  // 初始狀態隱藏課程列表
         groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
     });
@@ -103,7 +102,7 @@ function updateSummary() {
             qualifiedGroups++;
         }
         const groupCreditsSpan = document.querySelector(`.group:nth-child(${groupIndex + 1}) .group-credits`);
-        groupCreditsSpan.textContent = `(${groupCredits}/${minimumCredits} 學分)`;
+        groupCreditsSpan.textContent = `(${groupCredits}/${group.credits} 學分)`;
     });
     document.getElementById('totalCredits').textContent = totalCredits;
     document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
@@ -120,4 +119,13 @@ function toggleCourses(groupIndex) {
         coursesDiv.style.display = 'none';
         toggleButton.textContent = '+';
     }
+}
+
+function clearGroup(groupIndex) {
+    const group = groups[groupIndex];
+    group.courses.forEach((course, courseIndex) => {
+        const checkbox = document.getElementById(`group${groupIndex}course${courseIndex}`);
+        checkbox.checked = false;
+    });
+    updateSummary();
 }
