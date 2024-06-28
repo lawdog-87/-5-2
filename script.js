@@ -61,3 +61,12 @@ function updateSummary() {
     document.getElementById('totalCredits').textContent = totalCredits;
     document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
 }
+
+function addGroup() {
+    const newGroupName = document.getElementById('newGroupName').value;
+    if (newGroupName.trim() !== '') {
+        groups.push({ name: newGroupName, courses: [] });
+        displayGroups();
+    }
+    document.getElementById('newGroupName').value = '';
+}
