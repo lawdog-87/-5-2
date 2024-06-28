@@ -47,7 +47,7 @@ const groups = [
     { name: '科技法律選修學群', credits: 0, courses: [{ name: '法學緒論', credits: 2 }, { name: '醫學倫理與法律', credits: 2 }, { name: '資訊法律', credits: 2 }] }
 ];
 
-const minimumCredits = 5;
+const minimumCredits = 8;
 
 document.addEventListener('DOMContentLoaded', () => {
     displayGroups();
@@ -61,7 +61,7 @@ function displayGroups() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group';
         const groupTitle = document.createElement('h3');
-        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(${group.credits}/${minimumCredits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
+        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(0/${minimumCredits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
         groupDiv.appendChild(groupTitle);
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
@@ -77,10 +77,11 @@ function displayGroups() {
             checkbox.dataset.groupIndex = groupIndex;
             checkbox.dataset.courseIndex = courseIndex;
             checkbox.addEventListener('change', updateSummary);
-            courseDiv.appendChild(checkbox);
+            label.appendChild(checkbox);
             courseDiv.appendChild(label);
             coursesDiv.appendChild(courseDiv);
         });
+        coursesDiv.style.display = 'none';  // 初始狀態隱藏課程列表
         groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
     });
