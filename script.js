@@ -22,7 +22,6 @@ function displayGroups() {
         const groupTitle = document.createElement('h3');
         groupTitle.textContent = group.name;
         groupDiv.appendChild(groupTitle);
-
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
@@ -39,23 +38,35 @@ function displayGroups() {
             courseDiv.appendChild(checkbox);
             groupDiv.appendChild(courseDiv);
         });
-
-        const addCourseDiv = document.createElement('div');
-        addCourseDiv.className = 'add-course';
-        const courseNameInput = document.createElement('input');
-        courseNameInput.type = 'text';
-        courseNameInput.placeholder = '課程名稱';
-        courseNameInput.id = `newCourseName${groupIndex}`;
-        const courseCreditsInput = document.createElement('input');
-        courseCreditsInput.type = 'number';
-        courseCreditsInput.placeholder = '學分';
-        courseCreditsInput.id = `newCourseCredits${groupIndex}`;
-        const addCourseButton = document.createElement('button');
-        addCourseButton.textContent = '添加課程';
-        addCourseButton.onclick = () => addCourse(groupIndex);
-        addCourseDiv.appendChild(courseNameInput);
-        addCourseDiv.appendChild(courseCreditsInput);
-        addCourseDiv.appendChild(addCourseButton);
-        groupDiv.appendChild(addCourseDiv);
-
         groupsContainer.appendChild(groupDiv);
+    });
+}
+
+function updateSummary() {
+    let totalCredits = 0;
+    let qualifiedGroups = 0;
+    groups.forEach((group, groupIndex) => {
+        let groupCredits = 0;
+        group.courses.forEach((course, courseIndex) => {
+            const checkbox = document.getElementById(`group${groupIndex}course${courseIndex}`);
+            if (checkbox.checked) {
+                groupCredits += course.credits;
+            }
+        });
+        totalCredits += groupCredits;
+        if (groupCredits >= minimumCredits) {
+            qualifiedGroups++;
+        }
+    });
+    document.getElementById('totalCredits').textContent = totalCredits;
+    document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
+}
+
+function addGroup() {
+    const newGroupName = document.getElementById('newGroupName').value;
+    if (newGroupName.trim() !== '') {
+        groups.push({ name: newGroupName, courses: [] });
+        displayGroups();
+    }
+    document.getElementById('newGroupName').value = '';
+}
