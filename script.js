@@ -22,6 +22,7 @@ function displayGroups() {
         const groupTitle = document.createElement('h3');
         groupTitle.textContent = group.name;
         groupDiv.appendChild(groupTitle);
+
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
@@ -38,6 +39,7 @@ function displayGroups() {
             courseDiv.appendChild(checkbox);
             groupDiv.appendChild(courseDiv);
         });
+
         groupsContainer.appendChild(groupDiv);
     });
 }
@@ -60,13 +62,4 @@ function updateSummary() {
     });
     document.getElementById('totalCredits').textContent = totalCredits;
     document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
-}
-
-function addGroup() {
-    const newGroupName = document.getElementById('newGroupName').value;
-    if (newGroupName.trim() !== '') {
-        groups.push({ name: newGroupName, courses: [] });
-        displayGroups();
-    }
-    document.getElementById('newGroupName').value = '';
 }
