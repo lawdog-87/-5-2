@@ -23,6 +23,15 @@ h1, h2 {
     justify-content: space-between;
 }
 
+.group .group-info {
+    display: flex;
+    align-items: center;
+}
+
+.group .group-info span {
+    margin-left: 5px;
+}
+
 .course {
     display: flex;
     align-items: center;
