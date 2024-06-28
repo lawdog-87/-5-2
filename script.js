@@ -1,9 +1,9 @@
 const groups = [
-    { name: '群組1', courses: [{ name: '課程1', credits: 3 }, { name: '課程2', credits: 2 }] },
-    { name: '群組2', courses: [{ name: '課程3', credits: 4 }, { name: '課程4', credits: 1 }] },
-    { name: '群組3', courses: [{ name: '課程5', credits: 3 }, { name: '課程6', credits: 2 }] },
-    { name: '群組4', courses: [{ name: '課程7', credits: 3 }, { name: '課程8', credits: 1 }] },
-    { name: '群組5', courses: [{ name: '課程9', credits: 2 }, { name: '課程10', credits: 3 }] }
+    { name: '民事法選修學群', courses: [{ name: '課程1', credits: 3 }, { name: '課程2', credits: 2 }] },
+    { name: '公法學選修學群', courses: [{ name: '課程3', credits: 4 }, { name: '課程4', credits: 1 }] },
+    { name: '刑事法選修學群', courses: [{ name: '課程5', credits: 3 }, { name: '課程6', credits: 2 }] },
+    { name: '國際經貿法制選修學群', courses: [{ name: '課程7', credits: 3 }, { name: '課程8', credits: 1 }] },
+    { name: '科技法律選修學群', courses: [{ name: '課程9', credits: 2 }, { name: '課程10', credits: 3 }] }
 ];
 const minimumCredits = 5;
 
