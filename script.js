@@ -61,7 +61,7 @@ function displayGroups() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group';
         const groupTitle = document.createElement('h3');
-        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(0/${group.credits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
+        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(${group.credits}/${minimumCredits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
         groupDiv.appendChild(groupTitle);
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
@@ -77,8 +77,8 @@ function displayGroups() {
             checkbox.dataset.groupIndex = groupIndex;
             checkbox.dataset.courseIndex = courseIndex;
             checkbox.addEventListener('change', updateSummary);
-            courseDiv.appendChild(label);
             courseDiv.appendChild(checkbox);
+            courseDiv.appendChild(label);
             coursesDiv.appendChild(courseDiv);
         });
         groupDiv.appendChild(coursesDiv);
