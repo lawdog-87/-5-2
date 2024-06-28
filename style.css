@@ -10,6 +10,10 @@ h1, h2 {
 
 .group {
     margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
 }
 
 .group h3 {
@@ -24,4 +28,10 @@ h1, h2 {
 
 .course label {
     margin-left: 10px;
+    flex-grow: 1;
+}
+
+.course input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
 }
