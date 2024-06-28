@@ -61,7 +61,7 @@ function displayGroups() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group';
         const groupTitle = document.createElement('h3');
-        groupTitle.innerHTML = `<span>${group.name}</span><span class="group-credits">(0/${group.credits} 學分)</span>`;
+        groupTitle.innerHTML = `<div class="group-info"><span>${group.name}</span><span class="group-credits">(0/${group.credits} 學分)</span></div><button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
         groupDiv.appendChild(groupTitle);
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
@@ -101,4 +101,22 @@ function updateSummary() {
         if (groupCredits >= minimumCredits) {
             qualifiedGroups++;
         }
-        const groupCreditsSpan = document.querySelector
+        const groupCreditsSpan = document.querySelector(`.group:nth-child(${groupIndex + 1}) .group-credits`);
+        groupCreditsSpan.textContent = `(${groupCredits}/${minimumCredits} 學分)`;
+    });
+    document.getElementById('totalCredits').textContent = totalCredits;
+    document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
+}
+
+function toggleCourses(groupIndex) {
+    const groupDiv = document.querySelector(`.group:nth-child(${groupIndex + 1})`);
+    const coursesDiv = groupDiv.querySelector('.courses');
+    const toggleButton = groupDiv.querySelector('.toggle-button');
+    if (coursesDiv.style.display === 'none' || coursesDiv.style.display === '') {
+        coursesDiv.style.display = 'block';
+        toggleButton.textContent = '-';
+    } else {
+        coursesDiv.style.display = 'none';
+        toggleButton.textContent = '+';
+    }
+}
