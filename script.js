@@ -20,9 +20,11 @@ function displayGroups() {
         const groupDiv = document.createElement('div');
         groupDiv.className = 'group';
         const groupTitle = document.createElement('h3');
-        groupTitle.textContent = group.name;
-        groupDiv.appendChild(groupTitle);
-
+        groupTitle.innerHTML = `${group.name} (<span id="groupCredits${groupIndex}">0</span>/8) 
+            <button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>`;
+        const coursesDiv = document.createElement('div');
+        coursesDiv.className = 'courses';
+        coursesDiv.id = `courses${groupIndex}`;
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
@@ -37,9 +39,10 @@ function displayGroups() {
             checkbox.addEventListener('change', updateSummary);
             courseDiv.appendChild(label);
             courseDiv.appendChild(checkbox);
-            groupDiv.appendChild(courseDiv);
+            coursesDiv.appendChild(courseDiv);
         });
-
+        groupDiv.appendChild(groupTitle);
+        groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
     });
 }
@@ -59,7 +62,21 @@ function updateSummary() {
         if (groupCredits >= minimumCredits) {
             qualifiedGroups++;
         }
+        document.getElementById(`groupCredits${groupIndex}`).textContent = groupCredits;
     });
     document.getElementById('totalCredits').textContent = totalCredits;
     document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
 }
+
+function toggleCourses(groupIndex) {
+    const coursesDiv = document.getElementById(`courses${groupIndex}`);
+    const button = coursesDiv.previousElementSibling.querySelector('.toggle-button');
+    if (coursesDiv.style.display === 'none' || coursesDiv.style.display === '') {
+        coursesDiv.style.display = 'block';
+        button.textContent = '-';
+    } else {
+        coursesDiv.style.display = 'none';
+        button.textContent = '+';
+    }
+}
+
