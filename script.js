@@ -89,3 +89,4 @@ function clearSelections(groupIndex) {
     });
     updateSummary();
 }
+
