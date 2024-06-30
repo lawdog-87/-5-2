@@ -59,9 +59,14 @@ function displayGroups() {
                 <span>${group.name}</span>
                 <span class="group-credits">(0/${minimumCredits} 學分)</span>
                 <button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>
-                <button class="clear-button" onclick="clearSelections(${groupIndex})">清除</button>
             </div>`;
+        const clearButton = document.createElement('button');
+        clearButton.className = 'clear-button';
+        clearButton.textContent = '清除';
+        clearButton.onclick = () => clearSelections(groupIndex);
         groupDiv.appendChild(groupTitle);
+        groupDiv.appendChild(clearButton);
+        
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
         group.courses.forEach((course, courseIndex) => {
