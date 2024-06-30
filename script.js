@@ -1,13 +1,57 @@
 const groups = [
-    // Group data with credits as needed
+    {
+        name: "民事法選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "民法實例演習", credits: 2 },
+            { name: "土地法", credits: 4 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "公法學選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "政治學", credits: 2 },
+            { name: "行政法案例研習", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "刑事法選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "刑事訴訟法案例研究", credits: 2 },
+            { name: "犯罪學", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "國際經貿法制選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "經濟學", credits: 2 },
+            { name: "會計學", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "科技法律選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "醫學倫理與法律", credits: 2 },
+            { name: "資訊法律", credits: 2 },
+            // 其他課程...
+        ]
+    }
 ];
 
-const minimumCredits = 8;
-
+// 初始化顯示課程資料的功能
 document.addEventListener('DOMContentLoaded', () => {
     displayGroups();
     updateSummary();
 });
+
 
 function displayGroups() {
     const groupsContainer = document.getElementById('groups');
