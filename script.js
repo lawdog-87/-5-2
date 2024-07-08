@@ -16,15 +16,16 @@ function displayGroups() {
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
 
-        const clearButton = document.createElement('button');
-        clearButton.className = 'clear-button';
-        clearButton.textContent = '清除';
-        clearButton.onclick = () => clearSelections(groupIndex);
-        coursesDiv.appendChild(clearButton);
-
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
+            if (courseIndex === 0) {
+                const clearButton = document.createElement('button');
+                clearButton.className = 'clear-button';
+                clearButton.textContent = '清除';
+                clearButton.onclick = () => clearSelections(groupIndex);
+                coursesDiv.appendChild(clearButton);
+            }
             const label = document.createElement('label');
             label.htmlFor = `group${groupIndex}course${courseIndex}`;
             label.textContent = `${course.name} (${course.credits} 學分)`;
@@ -42,4 +43,47 @@ function displayGroups() {
         groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
     });
+}
+
+function updateSummary() {
+    let totalCredits = 0;
+    let qualifiedGroups = 0;
+    groups.forEach((group, groupIndex) => {
+        let groupCredits = 0;
+        group.courses.forEach((course, courseIndex) => {
+            const checkbox = document.getElementById(`group${groupIndex}course${courseIndex}`);
+            if (checkbox.checked) {
+                groupCredits += course.credits;
+            }
+        });
+        totalCredits += groupCredits;
+        if (groupCredits >= minimumCredits) {
+            qualifiedGroups++;
+        }
+        const groupCreditsSpan = document.querySelector(`.group:nth-child(${groupIndex + 1}) .group-credits`);
+        groupCreditsSpan.textContent = `(${groupCredits}/${minimumCredits} 學分)`;
+    });
+    document.getElementById('totalCredits').textContent = totalCredits;
+    document.getElementById('qualifiedGroups').textContent = qualifiedGroups;
+}
+
+function toggleCourses(groupIndex) {
+    const groupDiv = document.querySelector(`.group:nth-child(${groupIndex + 1})`);
+    const coursesDiv = groupDiv.querySelector('.courses');
+    const toggleButton = groupDiv.querySelector('.toggle-button');
+    if (coursesDiv.style.display === 'none' || coursesDiv.style.display === '') {
+        coursesDiv.style.display = 'block';
+        toggleButton.textContent = '-';
+    } else {
+        coursesDiv.style.display = 'none';
+        toggleButton.textContent = '+';
+    }
+}
+
+function clearSelections(groupIndex) {
+    groups[groupIndex].courses.forEach((_, courseIndex) => {
+        const checkbox = document.getElementById(`group${groupIndex}course${courseIndex}`);
+        checkbox.checked = false;
+    });
+    updateSummary();
 }
