@@ -64,13 +64,7 @@ function displayGroups() {
         
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
-        
-        const clearButton = document.createElement('button');
-        clearButton.className = 'clear-button';
-        clearButton.textContent = '清除';
-        clearButton.onclick = () => clearSelections(groupIndex);
-        coursesDiv.appendChild(clearButton);
-        
+
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
@@ -87,6 +81,12 @@ function displayGroups() {
             courseDiv.appendChild(checkbox);
             coursesDiv.appendChild(courseDiv);
         });
+        
+        const clearButton = document.createElement('button');
+        clearButton.className = 'clear-button';
+        clearButton.textContent = '清除';
+        clearButton.onclick = () => clearSelections(groupIndex);
+        coursesDiv.appendChild(clearButton);
         
         groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
