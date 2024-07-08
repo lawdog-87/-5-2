@@ -60,15 +60,17 @@ function displayGroups() {
                 <span class="group-credits">(0/${minimumCredits} 學分)</span>
                 <button class="toggle-button" onclick="toggleCourses(${groupIndex})">+</button>
             </div>`;
+        groupDiv.appendChild(groupTitle);
+        
+        const coursesDiv = document.createElement('div');
+        coursesDiv.className = 'courses';
+        
         const clearButton = document.createElement('button');
         clearButton.className = 'clear-button';
         clearButton.textContent = '清除';
         clearButton.onclick = () => clearSelections(groupIndex);
-        groupDiv.appendChild(groupTitle);
-        groupDiv.appendChild(clearButton);
+        coursesDiv.appendChild(clearButton);
         
-        const coursesDiv = document.createElement('div');
-        coursesDiv.className = 'courses';
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
@@ -85,6 +87,7 @@ function displayGroups() {
             courseDiv.appendChild(checkbox);
             coursesDiv.appendChild(courseDiv);
         });
+        
         groupDiv.appendChild(coursesDiv);
         groupsContainer.appendChild(groupDiv);
     });
