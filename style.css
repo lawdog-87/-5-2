@@ -75,8 +75,9 @@ button {
     background: none;
     font-size: 16px;
 }
+
 .clear-button {
     display: block;
     margin-bottom: 10px;
-    margin-left: 20px; /* 調整這個值來確保對齊 */
+    margin-left: 0; /* 調整這個值來確保對齊 */
 }
