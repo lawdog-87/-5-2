@@ -1,3 +1,4 @@
+const minimumCredits = 6; // 設定每個學群的最低學分要求
 const groups = [
     {
         name: "民事法選修學群",
