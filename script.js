@@ -1,3 +1,57 @@
+const groups = [
+    {
+        name: "民事法選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "民法實例演習", credits: 2 },
+            { name: "土地法", credits: 4 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "公法學選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "政治學", credits: 2 },
+            { name: "行政法案例研習", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "刑事法選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "刑事訴訟法案例研究", credits: 2 },
+            { name: "犯罪學", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "國際經貿法制選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "經濟學", credits: 2 },
+            { name: "會計學", credits: 2 },
+            // 其他課程...
+        ]
+    },
+    {
+        name: "科技法律選修學群",
+        courses: [
+            { name: "法學緒論", credits: 2 },
+            { name: "醫學倫理與法律", credits: 2 },
+            { name: "資訊法律", credits: 2 },
+            // 其他課程...
+        ]
+    }
+];
+
+// 初始化顯示課程資料的功能
+document.addEventListener('DOMContentLoaded', () => {
+    displayGroups();
+    updateSummary();
+});
+
 function displayGroups() {
     const groupsContainer = document.getElementById('groups');
     groupsContainer.innerHTML = '';
@@ -16,16 +70,15 @@ function displayGroups() {
         const coursesDiv = document.createElement('div');
         coursesDiv.className = 'courses';
 
+        const clearButton = document.createElement('button');
+        clearButton.className = 'clear-button';
+        clearButton.textContent = '清除';
+        clearButton.onclick = () => clearSelections(groupIndex);
+        coursesDiv.appendChild(clearButton);
+
         group.courses.forEach((course, courseIndex) => {
             const courseDiv = document.createElement('div');
             courseDiv.className = 'course';
-            if (courseIndex === 0) {
-                const clearButton = document.createElement('button');
-                clearButton.className = 'clear-button';
-                clearButton.textContent = '清除';
-                clearButton.onclick = () => clearSelections(groupIndex);
-                coursesDiv.appendChild(clearButton);
-            }
             const label = document.createElement('label');
             label.htmlFor = `group${groupIndex}course${courseIndex}`;
             label.textContent = `${course.name} (${course.credits} 學分)`;
